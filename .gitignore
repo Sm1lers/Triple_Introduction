@@ -1,0 +1,12 @@
+venv
+.venv
+.idea/
+*.iml
+media/backups/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+dp.sqlite3
