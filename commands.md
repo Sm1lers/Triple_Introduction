@@ -1,43 +1,121 @@
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/stanruss/название.git
-git push -u origin master
+# 🧰 Git Cheat Sheet
 
-Скачать изменения с репозитория
-git pull origin main --allow-unrelated-histories
+Полная шпаргалка по Git — инициализация, ветки, коммиты, откаты, push/pull.
 
-git log --oneline - посмотреть все коммиты.
-git checkout . - восстановить все.
-git checkout "код коммита" - вернуть до состояния этого коммита.
-git checkout master - вернуться в ветку мастер.
+---
 
-Восстановить файлы на локальном компьютере:
-git fetch --all
-git reset --hard origin/master или git reset --hard origin/<название_ветки>
+## 📦 Инициализация репозитория
 
-git add text.txt - Добавить файл в репозиторий
-git rm text.txt - Удалить файл
-git status - Текущее состояние репозитория (изменения, неразрешенные конфликты и тп)
-git commit -a -m "Commit description" - Сделать коммит
-git push origin - Замерджить все ветки локального репозитория на удаленный репозиторий 
-git push origin master - Аналогично предыдущему, но делается пуш только ветки master
-git push origin HEAD - Запушить текущую ветку, не вводя целиком ее название
-git pull origin - Замерджить все ветки с удаленного репозитория
-git pull origin master - Аналогично предыдущему, но накатывается только ветка master
-git pull origin HEAD - Накатить текущую ветку, не вводя ее длинное имя
-git fetch origin - Скачать все ветки с origin, но не мерджить их в локальный репозиторий
-git fetch origin master - Аналогично предыдущему, но только для одной заданной ветки
-git checkout -b some_branch origin/some_branch - Начать работать с веткой some_branch (уже существующей)
-git branch some_branch - Создать новый бранч (ответвится от текущего)
-git checkout some_branch - Переключиться на другую ветку (из тех, с которыми уже работаем)
-git branch # звездочкой отмечена текущая ветвь - Получаем список веток, с которыми работаем
-git branch -a # | grep something - Просмотреть все существующие ветви
-git merge some_branch - Замерджить some_branch в текущую ветку
-git branch -d some_branch - Удалить бранч (после мерджа)
-git branch -D some_branch - Просто удалить бранч (тупиковая ветвь)
-git show d8578edf8458ce06fbc5bb76a58c5ca4a58c5ca4 - Изменения, сделанные в заданном коммите
-git push origin :branch-name - Удалить бранч из репозитория на сервере
-git reset --hard d8578edf8458ce06fbc5bb76a58c5ca4a58c5ca4 - Откатиться к конкретному коммиту и удалить последующие (хэш смотрим в «git log»)
-git push -f - залить на сервер измененные коммиты
-git clean -f - Удаление untracked files
+git init  
+git add README.md  
+git commit -m "first commit"  
+git remote add origin https://github.com/stanruss/название.git  
+git push -u origin master  
+
+---
+
+## 🔄 Получение изменений
+
+git pull origin main --allow-unrelated-histories  
+git pull origin  
+git pull origin master  
+git pull origin HEAD  
+
+---
+
+## ⬇️ Fetch (без merge)
+
+git fetch origin  
+git fetch origin master  
+git fetch --all  
+
+---
+
+## 🕒 История и коммиты
+
+git log --oneline                 # Все коммиты  
+git show <commit_hash>            # Изменения в коммите  
+
+---
+
+## 📝 Работа с файлами
+
+git add text.txt                  # Добавить файл  
+git rm text.txt                   # Удалить файл  
+git clean -f                      # Удалить untracked файлы  
+
+---
+
+## 📌 Статус и коммит
+
+git status                        # Состояние репозитория  
+git commit -a -m "Commit message" # Коммит всех отслеживаемых файлов  
+
+---
+
+## 🌿 Ветки
+
+git branch                        # Список локальных веток  
+git branch -a                     # Все ветки  
+git branch some_branch            # Создать ветку  
+git checkout some_branch          # Переключиться  
+git checkout -b some_branch       # Создать и перейти  
+git checkout -b some_branch origin/some_branch  # Подключить удалённую ветку  
+
+---
+
+## 🔀 Merge
+
+git merge some_branch             # Слить ветку в текущую  
+
+---
+
+## 🗑️ Удаление веток
+
+git branch -d some_branch         # Удалить после merge  
+git branch -D some_branch         # Принудительно  
+git push origin :branch-name      # Удалить удалённую ветку  
+
+---
+
+## 🚀 Push
+
+git push origin                   # Запушить все ветки  
+git push origin master            # Запушить master  
+git push origin HEAD              # Запушить текущую ветку  
+git push -f                       # Принудительно перезаписать историю  
+
+---
+
+## ⏪ Откат и восстановление
+
+git checkout .                    # Восстановить все файлы  
+git checkout <commit_hash>        # Перейти к коммиту  
+git checkout master               # Вернуться в master  
+
+---
+
+## ♻️ Жёсткое восстановление из origin
+
+⚠️ Удаляет локальные изменения
+
+git reset --hard origin/master  
+git reset --hard origin/<branch_name>  
+
+---
+
+## 🧨 Полный откат к коммиту
+
+⚠️ Удаляет все коммиты после указанного
+
+git reset --hard <commit_hash>  
+
+---
+
+## ✅ Полезно помнить
+
+• git fetch — безопаснее, чем pull  
+• git status — проверяй перед каждым commit  
+• reset --hard и push -f — использовать осторожно  
+
+---
